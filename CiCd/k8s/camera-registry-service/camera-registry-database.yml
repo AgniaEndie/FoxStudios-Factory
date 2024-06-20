@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: camera-registry-deployment
+  name: camera-registry-database-deployment
 spec:
   replicas: 1
   template:
@@ -36,7 +36,7 @@ spec:
       volumes:
         - hostPath:
             path: "/home/docker/foxfactory/camera-registry/pgdata"
-          name: camera-registry
+          name: camera-registry-pgdata
   selector:
     matchLabels:
       app: camera-registry-database
@@ -51,6 +51,6 @@ spec:
   ports:
     - port: 8080
       protocol: TCP
-      targetPort: 8080
+      targetPort: 5432
       nodePort: 30563
   type: NodePort
