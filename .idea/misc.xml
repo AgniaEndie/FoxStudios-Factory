@@ -3,10 +3,10 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/../CameraRegistryService" />
-    <file type="web" url="file://$PROJECT_DIR$/../ConfigServer" />
-    <file type="web" url="file://$PROJECT_DIR$/ConfigServer" />
+    <file type="web" url="file://$PROJECT_DIR$/CameraRegistryService" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_22" project-jdk-name="azul-22" project-jdk-type="JavaSDK">
+  <component name="NimProjectFileService" has-nim-files="false" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_22" default="true" project-jdk-name="azul-22" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

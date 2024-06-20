@@ -16,33 +16,13 @@ spec:
         - name: camera-registry-server
           image: endienasg/foxstudios-factory-camera-registry:main
           env:
-            - name: GIT_USER
+            - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: git-data
-                  key: name
-            - name: GIT_ACCESS_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: git-data
-                  key: token
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: camera-registry-db-deployment
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: camera-registry-db
-  template:
-    metadata:
-      labels:
-        app: camera-registry-db
-    spec:
-      containers:
-        - name: camera-registry-base
-          image: postgres:16
-          env:
+                  name: config-registry-database-secret
+                  key: POSTGRES_USER
             - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: config-registry-database-secret
+                  key: POSTGRES_PASSWORD

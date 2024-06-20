@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: camera-registry-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: camera-registry-database
+    spec:
+      containers:
+        - name: camera-registry-database
+          image: postgres:16
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_DB
+                  name: config-registry-database-secret
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_USER
+                  name: config-registry-database-secret
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key:  POSTGRES_PASSWORD
+                  name: config-registry-database-secret
+          volumeMounts:
+            - mountPath: "/var/lib/postgresql/data"
+              name: "camera-registry-pgdata"
+      volumes:
+        - hostPath:
+            path: "/home/docker/foxfactory/camera-registry/pgdata"
+          name: camera-registry
+  selector:
+    matchLabels:
+      app: camera-registry-database
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: camera-registry-database-service
+spec:
+  selector:
+    app: camera-registry-database
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+      nodePort: 30563
+  type: NodePort
