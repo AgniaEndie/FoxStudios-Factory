@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-server-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: config-server
+  template:
+    metadata:
+      labels:
+        app: config-server
+    spec:
+      containers:
+        - name: config-server
+          image: endienasg/foxstudios-factory-config-server:main
+          env:
+            - name: GIT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: git-data
+                  key: name
+            - name: GIT_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: git-data
+                  key: token

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/FoxStudios-Factory.iml" filepath="$PROJECT_DIR$/FoxStudios-Factory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../FoxStudios-Factory-Config/FoxStudios-Factory-Config.iml" filepath="$PROJECT_DIR$/../FoxStudios-Factory-Config/FoxStudios-Factory-Config.iml" />
+    </modules>
+  </component>
+</project>
